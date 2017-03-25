@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MovieFinder</string>
+    <string name="movie_name">Enter Movie Name</string>
+    <string name="genre">Genre</string>
+    <string name="rating">Rating</string>
+    <string name="release_date">Release Date</string>
+    <string name="year">Year</string>
+    <string name="actors">Actors</string>
+    <string name="language">Language</string>
+    <string name="type">Type</string>
+    <string name="radio_1">Both</string>
+    <string name="radio_2">Movies</string>
+    <string name="radio_3">Series</string>
+    <string name="error">Error getting data from server,\nPlease check Internet Connection!</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#f44336</color>
+    <color name="colorPrimaryDark">#c62828</color>
+    <color name="colorAccent">#304ffe</color>
+
+    <color name="error_color">#e53935</color>
+    <color name="rate_btn_normal">#263238</color>
+
+
+</resources>

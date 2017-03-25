@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_movie_deatils"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/cardview_margin"
+    tools:context="com.ardent.sys.moviefinder.MovieDetailsActivity">
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/progress_bar"/>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/cardview_margin"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        android:foreground="?attr/selectableItemBackground"
+        android:elevation="10dp"
+        android:id="@+id/details_cardView">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="@dimen/textview_margin"
+                android:id="@+id/title_text"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginLeft="@dimen/cardview_margin"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_below="@+id/title_text"
+                android:layout_margin="@dimen/textview_margin"
+                android:id="@+id/plot_text"
+                android:maxLines="3"
+                android:ellipsize="end"
+                />
+            <com.android.volley.toolbox.NetworkImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView"
+                android:layout_below="@+id/plot_text"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="@dimen/imageview_margin"
+                android:layout_marginRight="@dimen/imageview_margin_right"
+                android:layout_marginEnd="@dimen/imageview_margin_right"
+                android:src="@drawable/image"/>
+
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_below="@+id/plot_text"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/release_date"
+                android:textColor="@color/rate_btn_normal"
+                android:layout_margin="@dimen/textview_margin"
+                android:layout_toRightOf="@+id/imageView"
+                android:layout_toEndOf="@+id/imageView"
+                android:textSize="14sp"
+                android:id="@+id/rel_date_header"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_below="@+id/rel_date_header"
+                android:layout_toRightOf="@+id/imageView"
+                android:layout_toEndOf="@+id/imageView"
+                android:layout_margin="@dimen/textview_margin"
+                android:id="@+id/rel_date_text"
+                />
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_below="@+id/rel_date_text"
+                android:layout_toRightOf="@+id/imageView"
+                android:layout_toEndOf="@+id/imageView"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/rating"
+                android:textColor="@color/rate_btn_normal"
+                android:layout_margin="@dimen/textview_margin"
+                android:textSize="14sp"
+                android:id="@+id/rating_header"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_below="@+id/rating_header"
+                android:layout_toRightOf="@+id/imageView"
+                android:layout_toEndOf="@+id/imageView"
+                android:layout_margin="@dimen/textview_margin"
+                android:id="@+id/rating_text"
+                />
+
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_below="@+id/imageView"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/genre"
+                android:textColor="@color/rate_btn_normal"
+                android:layout_margin="@dimen/textview_margin"
+                android:textSize="14sp"
+                android:id="@+id/genre_header"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_below="@+id/genre_header"
+                android:layout_margin="@dimen/textview_margin"
+                android:id="@+id/genre_text"
+                />
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_below="@+id/genre_text"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/language"
+                android:textColor="@color/rate_btn_normal"
+                android:layout_margin="@dimen/textview_margin"
+                android:textSize="14sp"
+                android:id="@+id/lang_header"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_below="@+id/lang_header"
+                android:layout_margin="@dimen/textview_margin"
+                android:id="@+id/lang_text"
+                />
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_below="@+id/lang_text"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/actors"
+                android:textColor="@color/rate_btn_normal"
+                android:layout_margin="@dimen/textview_margin"
+                android:textSize="14sp"
+                android:id="@+id/actor_header"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_below="@+id/actor_header"
+                android:layout_margin="@dimen/textview_margin"
+                android:id="@+id/actor_text"
+                />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/errorView"
+        android:textSize="15sp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        android:text="@string/error"
+        android:textColor="@color/error_color" />
+</RelativeLayout>
