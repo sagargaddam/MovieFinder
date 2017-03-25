@@ -55,9 +55,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //Initializing
         intiFields();
 
+        //checking whether to search for movies, series or both
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -71,9 +72,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //validating edittext field
                 if(searchInput.getText().length() == 0){
                     searchInput.setError("Invalid Entry");
                 }else{
@@ -85,8 +88,10 @@ public class MainActivity extends AppCompatActivity {
 
                     SEARCH_TERM = searchInput.getText().toString();
 
+                    //removing all previous items from recyclerview if any to avoid duplicating
                     if(moviesList.size()>0){clearData();}
 
+                    //checking whether internet is working or not
                     if(!isNetworkAvailable()){
                         noInfoText.setVisibility(View.VISIBLE);
                     }
@@ -99,11 +104,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(mContext, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, final int position) {
                        SearchListItem searchListItem =  moviesList.get(position);
-                       Intent intent = new Intent(mContext,MovieDetailsActivity.class);
+
+                        //sending selected item's movie id to moviedetails activity
+                        Intent intent = new Intent(mContext, MovieDetailsActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putString(Config.TAG_STRING_KEY,searchListItem.getImdbId());
                         intent.putExtra(Config.TAG_BUNDLE,bundle);
@@ -134,31 +142,34 @@ public class MainActivity extends AppCompatActivity {
    private void getDataFromServer(){
        progressBar.setVisibility(View.VISIBLE);
        progressBar.setIndeterminate(true);
+
        String url = Config.MOVIE_SEARCH_LINK;
-       String query="";
+       String query;
+
+       //url encoding of input string to replace spaces
        try {
            query = URLEncoder.encode(SEARCH_TERM, "utf-8");
            url = Config.MOVIE_SEARCH_LINK+query+TYPE;
        } catch (UnsupportedEncodingException e) {
            e.printStackTrace();
        }
-       Log.d("rag",Config.MOVIE_SEARCH_LINK+query+TYPE);
+
+       //asynchronous voley jsonobject request to fetch json data
        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 progressBar.setVisibility(View.GONE);
-                ListItem listItem = new ListItem();
                 Log.d("tag",response.toString());
 
                 try {
 
-                    JSONArray jsonArray= response.getJSONArray("Search");
+                    JSONArray jsonArray = response.getJSONArray(Config.TAG_SEARCH);
                     parseData(jsonArray);
 
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(mContext,
-                            "Error: " + e.getMessage(),
+                            "" + e.getMessage(),
                             Toast.LENGTH_LONG).show();
                 }
             }
@@ -179,15 +190,16 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < array.length(); i++) {
 
             SearchListItem searchListItem = new SearchListItem();
-            JSONObject json = null;
+            JSONObject json;
             try {
-                //Getting json
+                //Getting string data from json
                 json = array.getJSONObject(i);
                 String title= json.getString(Config.TAG_TITLE);
                 String type = json.getString(Config.TAG_TYPE);
                 String year=json.getString(Config.TAG_YEAR);
                 String posterUrl=json.getString(Config.TAG_POSTER_URL);
                 String imdbId =  json.getString(Config.TAG_IMDB_ID);
+
                 searchListItem.setTitle(title);
                 searchListItem.setReleaseYear(year);
                 searchListItem.setType(type);
@@ -209,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
         return active!=null&&active.isConnected();
     }
 
+    //method to remove all items from recycler view
     public void clearData() {
         int size = this.moviesList.size();
         if (size > 0) {
